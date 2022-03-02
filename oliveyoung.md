@@ -1043,3 +1043,31 @@ print(len(df_3.loc[df_3.기능.str.contains("수분감")]))
 347
 ```
 
+
+
+```python
+plt.rc('font',family = "Malgun Gothic")
+```
+
+```python
+sns.countplot(y = '별점', hue = '기능', palette="YlGnBu", data = df_2)
+```
+
+
+
+```python
+df = pd.read_csv('team_3') 
+data = []
+for i,v in enumerate(df_2['기능'].values):
+    for j in v.split(','):
+        data.append({'별점':df.iloc[i][df.columns[1]],'기능': j.split()[0]})
+```
+
+```python
+df = pd.DataFrame(data)
+```
+
+```python
+sns.countplot(x = '별점', hue = '기능', palette="BuPu", data = df)
+```
+
