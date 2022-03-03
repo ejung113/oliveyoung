@@ -1071,3 +1071,32 @@ df = pd.DataFrame(data)
 sns.countplot(x = '별점', hue = '기능', palette="BuPu", data = df)
 ```
 
+
+
+
+
+```python
+sns.countplot(y = '별점', hue = '기능', palette="YlGnBu", data = df)
+```
+
+
+
+```python
+sns.countplot(x = '별점', hue = '피부타입', palette="YlGnBu", data = olive_df)
+```
+
+
+
+```python
+%matplotlib inline
+```
+
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+```
+
