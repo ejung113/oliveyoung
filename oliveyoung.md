@@ -1100,3 +1100,50 @@ import seaborn as sns
 import pandas as pd
 ```
 
+```python
+plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['font.size'] = 12
+plt.rcParams['figure.figsize'] = (10,7)
+```
+
+
+
+```python
+df = pd.read_csv("olive_data_crawling.csv")
+```
+
+```python
+df = df[["별점","피부타입"]]
+```
+
+```python
+data = pd.DataFrame(df)
+print(data)
+```
+
+```html
+     별점      피부타입
+0     4   건성에 좋아요
+1     5   건성에 좋아요
+2     5   건성에 좋아요
+3     5   건성에 좋아요
+4     4   건성에 좋아요
+..   ..       ...
+523   5   건성에 좋아요
+524   5  복합성에 좋아요
+525   5   건성에 좋아요
+526   5  복합성에 좋아요
+527   4  복합성에 좋아요
+
+[528 rows x 2 columns]
+```
+
+
+
+```python
+g = sns.countplot(
+    data=data, x='별점', hue='피부타입'
+)
+plt.show()
+```
+
