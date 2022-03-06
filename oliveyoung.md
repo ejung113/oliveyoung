@@ -1147,3 +1147,9 @@ g = sns.countplot(
 plt.show()
 ```
 
+
+
+```python
+grouped = data.groupby(list(data.columns)).size().unstack(fill_value=0).stack().reset_index(name='counts')
+grouped
+```
