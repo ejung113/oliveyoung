@@ -1165,3 +1165,41 @@ grouped
     text-align: right;
 }
 ```
+
+
+
+#### 표
+
+
+
+```python
+f, (ax_top, ax_bottom) = plt.subplots(ncols=1, nrows=2, sharex=True, gridspec_kw={'hspace':0.02})
+
+sns.barplot(x="별점", y="counts", hue="피부타입",data=grouped, ax=ax_top, palette="YlGnBu")
+sns.barplot(x="별점", y="counts", hue="피부타입",data=grouped, ax=ax_bottom, palette="YlGnBu")
+
+ax_top.set_ylim(bottom=100)   # those limits are fake
+ax_top.set_ylabel('')
+ax_bottom.set_ylim(0,50)
+ax_bottom.set_ylabel('')
+
+sns.despine(ax=ax_bottom)
+sns.despine(ax=ax_top, bottom=True)
+
+ax = ax_top
+d = .015  # how big to make the diagonal lines in axes coordinates
+# arguments to pass to plot, just so we don't keep repeating them
+kwargs = dict(transform=ax.transAxes, color='k', clip_on=False)
+ax.plot((-d, +d), (-d, +d), **kwargs)        # top-left diagonal
+
+ax2 = ax_bottom
+kwargs.update(transform=ax2.transAxes)  # switch to the bottom axes
+ax2.plot((-d, +d), (1 - d, 1 + d), **kwargs)  # bottom-left diagonal
+
+f.text(0.01, 0.5, '좋아요 수', va='center', rotation='horizontal')
+
+#remove one of the legend
+ax_bottom.legend_.remove()
+plt.figure(figsize=(10,20))
+plt.show()
+```
