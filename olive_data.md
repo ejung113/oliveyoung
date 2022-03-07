@@ -14,7 +14,6 @@ df = pd.read_csv("olive_data_crawling.csv")
 df
 ```
 
-```html
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -172,13 +171,11 @@ df
       <td>보통이에요</td>
       <td>보통이에요</td>
       <td>보통이에요</td>
-     <td>복합성에 좋아요</td>
+      <td>복합성에 좋아요</td>
       <td>어뮤즈 팩트 사용하고 있어서 새로나와서 구매해봤어요\n아직 사용은 안해봤는데 리뷰보...</td>
     </tr>
   </tbody>
 </table>
-```
-
 <p>528 rows × 10 columns</p>
 
 
@@ -192,7 +189,6 @@ result_1 = df[["별점","발색력","지속력","수분감"]]
 result_1
 ```
 
-```html
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -284,7 +280,6 @@ result_1
   </tbody>
 </table>
 <p>528 rows × 4 columns</p>
-```
 
 
 
@@ -297,7 +292,6 @@ df=result_1.sort_values(by="별점",ascending = True)
 df
 ```
 
-```html
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -389,7 +383,6 @@ df
   </tbody>
 </table>
 <p>528 rows × 4 columns</p>
-```
 
 
 
@@ -397,3 +390,187 @@ df
 
 
 
+```python
+def color(x):
+    if x=='다소 아쉬워요':
+        return 1
+    elif x=='보통이에요':
+        return 2
+    else:
+        return 3
+```
+
+```python
+df["발색력"]=df["발색력"].apply(color)
+```
+
+```python
+def last(x):
+    if x=='예상보다 짧아요':
+        return 1
+    elif x=='보통이에요':
+        return 2
+    else:
+        return 3
+```
+
+```python
+df["지속력"]=df["지속력"].apply(last)
+```
+
+```python
+def water(x):
+    if x=='매트해요':
+        return 1
+    elif x=='보통이에요':
+        return 2
+    else:
+        return 3
+```
+
+```python
+df["수분감"]=df["수분감"].apply(water)
+df
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>별점</th>
+      <th>발색력</th>
+      <th>지속력</th>
+      <th>수분감</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>365</th>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>312</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>507</th>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>245</th>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>243</th>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>253</th>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>528 rows × 4 columns</p>
+
+
+
+3\) 별점 기준 점수 평균치
+
+
+
+```python
+df_1 = df.groupby("별점").mean().transpose()
+df_1
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>별점</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>발색력</th>
+      <td>1.636364</td>
+      <td>1.777778</td>
+      <td>1.851852</td>
+      <td>2.253165</td>
+      <td>2.696517</td>
+    </tr>
+    <tr>
+      <th>지속력</th>
+      <td>1.363636</td>
+      <td>1.888889</td>
+      <td>1.777778</td>
+      <td>2.113924</td>
+      <td>2.544776</td>
+    </tr>
+    <tr>
+      <th>수분감</th>
+      <td>2.181818</td>
+      <td>2.444444</td>
+      <td>2.592593</td>
+      <td>2.670886</td>
+      <td>2.863184</td>
+    </tr>
+  </tbody>
+</table>
