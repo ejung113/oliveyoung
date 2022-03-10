@@ -1009,3 +1009,28 @@ df_1
   </tbody>
 </table>
 <p>528 rows × 2 columns</p>
+
+
+
+3\) 별점에 따른 기능 구분
+
+
+
+```python
+df_2=df_1.loc[df_1.기능.str.contains("좋아요")]
+df_2
+df_2.to_csv("team_3")
+```
+
+```python
+df_3=df_2.loc[df['별점']==5]
+print(len(df_3.loc[df_3.기능.str.contains("발색력")]))
+print(len(df_3.loc[df_3.기능.str.contains("지속력")]))
+print(len(df_3.loc[df_3.기능.str.contains("수분감")]))
+```
+
+```html
+290
+230
+347
+```
