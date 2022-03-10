@@ -1012,7 +1012,7 @@ df_1
 
 
 
-3\) 별점에 따른 기능 구분
+3\) 별점에 따른 기능 count
 
 
 
@@ -1034,3 +1034,91 @@ print(len(df_3.loc[df_3.기능.str.contains("수분감")]))
 230
 347
 ```
+
+
+
+4\) 별점에 따른 기능 나눠서 count
+
+
+
+```python
+df = pd.read_csv('team_3') 
+data = []
+for i,v in enumerate(df_2['기능'].values):
+    for j in v.split(','):
+        data.append({'별점':df.iloc[i][df.columns[1]],'기능': j.split()[0]})
+```
+
+```python
+df = pd.DataFrame(data)
+df
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>별점</th>
+      <th>기능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>발색력</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>수분감</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>수분감</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>발색력</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>수분감</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>991</th>
+      <td>5</td>
+      <td>지속력</td>
+    </tr>
+    <tr>
+      <th>992</th>
+      <td>5</td>
+      <td>수분감</td>
+    </tr>
+    <tr>
+      <th>993</th>
+      <td>5</td>
+      <td>발색력</td>
+    </tr>
+    <tr>
+      <th>994</th>
+      <td>5</td>
+      <td>지속력</td>
+    </tr>
+    <tr>
+      <th>995</th>
+      <td>5</td>
+      <td>수분감</td>
+    </tr>
+  </tbody>
+</table>
+<p>996 rows × 2 columns</p>
+
