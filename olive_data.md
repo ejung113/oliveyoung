@@ -1157,3 +1157,116 @@ print(data)
 [528 rows x 2 columns]
 ```
 
+
+
+##### 6) 별점에 따른 피부타입 나눠서 count
+
+
+
+```python
+grouped = data.groupby(list(data.columns)).size().unstack(fill_value=0).stack().reset_index(name='counts')
+grouped
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>별점</th>
+      <th>피부타입</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>건성에 좋아요</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>복합성에 좋아요</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>지성에 좋아요</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>건성에 좋아요</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>복합성에 좋아요</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>지성에 좋아요</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3</td>
+      <td>건성에 좋아요</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>3</td>
+      <td>복합성에 좋아요</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>3</td>
+      <td>지성에 좋아요</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4</td>
+      <td>건성에 좋아요</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>4</td>
+      <td>복합성에 좋아요</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4</td>
+      <td>지성에 좋아요</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>5</td>
+      <td>건성에 좋아요</td>
+      <td>245</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>5</td>
+      <td>복합성에 좋아요</td>
+      <td>144</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>5</td>
+      <td>지성에 좋아요</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
